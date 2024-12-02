@@ -15,12 +15,9 @@ def check_line(inp):
                 return True
     return False
 
-num = 0
+#num = 0
 inf = sys.argv[1]
 with open(inf, "r") as f:
-    for line in f:
-        if check_line(line):
-            num += 1
-print(num)
+    print(len([ line for line in f if check_line(line) ]))
 
 
