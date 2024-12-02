@@ -2,6 +2,7 @@
 
 import sys
 import numpy as np
+from itertools import chain, combinations
 
 monotonic = lambda r: np.all(np.diff(r) < 0) | np.all(np.diff(r) > 0)
 inbounds = lambda r: np.all(abs(np.diff(r)) >= 1) & np.all(abs(np.diff(r)) <= 3)
@@ -11,13 +12,8 @@ def check_line(inp):
     if monotonic(arr) and inbounds(arr):
         return True
 
-    a = inp.split(" ")
-    for r in range(len(a)):
-        a = inp.split(" ")
-        del a[r]
-        line = " ".join(a)
-        arr = np.fromstring(line, dtype=int, sep=' ')
-        if monotonic(arr) and inbounds(arr):
+    for parr in combinations(arr, len(arr)-1):
+        if monotonic(parr) and inbounds(parr):
             return True
     return False
 
