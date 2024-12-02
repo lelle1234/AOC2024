@@ -2,7 +2,7 @@
 
 import sys
 import numpy as np
-from itertools import chain, combinations
+from itertools import combinations
 
 monotonic = lambda r: np.all(np.diff(r) < 0) | np.all(np.diff(r) > 0)
 inbounds = lambda r: np.all(abs(np.diff(r)) >= 1) & np.all(abs(np.diff(r)) <= 3)
